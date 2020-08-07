@@ -24,16 +24,6 @@ export const httpsPartial: NamedNode = https:
 export const httpsTemplate: NamedNode = https://example.com/path/
 ```
 
-```tsgraph
-import * as ns from "./nodes/example1"
-
-console.log({ ns })
-```
-
-```bash
-node n0.tsgraph
-```
-
 ### Literals
 
 Literals can be defined by using a value of that type, or their primative name or `Date`, literal definitions must be 
@@ -52,16 +42,6 @@ export const stringWhatever: ReadonlyDataset = graph { "Whatever" }
 export const stringWhatever: ReadonlyDataset = graph { "Whatever" }
 export const bigint: ReadonlyDataset = graph { bigint }
 export const date: ReadonlyDataset = graph { Date }
-```
-
-```tsgraph
-import * as from "./literals/example1"
-
-console.log({ ns })
-```
-
-```bash
-node n0.tsgraph
 ```
 
 ### References
