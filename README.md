@@ -388,6 +388,14 @@ graph function f extends status {
 
 ## Lens
 
+```
+export interface Lens<V> extends ReadonlyDataset<Quad> {
+  [Symbol.iterator](): Iterator<Quad>
+  [Symbol.asyncIterator](): AsyncIterator<[ReadonlyDataset<Quad>, ReadonlyDataset<Quad>]>
+  then(resolve: (value: V) => void, reject: (error: unknown) => void): void
+}
+```
+
 A lens is like a function, but instead of just `yield` the `lens` can use `return`
 
 ```
