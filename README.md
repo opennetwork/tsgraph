@@ -30,18 +30,18 @@ Literals can be defined by using a value of that type, or their primative name o
 defined within a graph, which is expanded more on later
 
 ```
-export const boolean: ReadonlyDataset = graph { boolean }
-export const booleanTrue: ReadonlyDataset = graph { true }
-export const booleanFalse: ReadonlyDataset = graph { false }
-export const number: ReadonlyDataset = graph { number }
-export const numberZero: ReadonlyDataset = graph { 0 }
-export const numberOne: ReadonlyDataset = graph { 0 }
-export const string: ReadonlyDataset = graph { string }
-export const stringEmpty: ReadonlyDataset = graph { "" }
-export const stringWhatever: ReadonlyDataset = graph { "Whatever" }
-export const stringWhatever: ReadonlyDataset = graph { "Whatever" }
-export const bigint: ReadonlyDataset = graph { bigint }
-export const date: ReadonlyDataset = graph { Date }
+export const boolean: ReadonlyGraph = graph { boolean }
+export const booleanTrue: ReadonlyGraph = graph { true }
+export const booleanFalse: ReadonlyGraph = graph { false }
+export const number: ReadonlyGraph = graph { number }
+export const numberZero: ReadonlyGraph = graph { 0 }
+export const numberOne: ReadonlyGraph = graph { 0 }
+export const string: ReadonlyGraph = graph { string }
+export const stringEmpty: ReadonlyGraph = graph { "" }
+export const stringWhatever: ReadonlyGraph = graph { "Whatever" }
+export const stringWhatever: ReadonlyGraph = graph { "Whatever" }
+export const bigint: ReadonlyGraph = graph { bigint }
+export const date: ReadonlyGraph = graph { Date }
 ```
 
 ### References
@@ -96,7 +96,9 @@ console.log({ withinContext: differentSiteAuthor.value.startsWith(context.value)
 ### Graph
 
 ```typescript
-export interface Graph extends ReadonlyDataset<Quad>, AsyncDataset {
+export interface ReadonlyGraph extends ReadonlyDataset<Quad> {
+  [Symbol.iterator](): Iterator<Quad>
+  [Symbol.asyncIterator](): AsyncIterator<[ReadonlyDataset<Quad>, ReadonlyDataset<Quad>]>
   subject: BlankNode | NamedNode | Variable
 }
 ```
