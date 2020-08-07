@@ -1,8 +1,12 @@
 # tsgraph
 
-Below is a rough idea as to goal for functionality. 
-
-Please treat all 0.x.y revisions to be unstable
+> Below is a rough idea as to goal for functionality. 
+>
+> Please treat all 0.x.y revisions to be unstable
+>
+> Have any questions or see something that seems a bit odd? [Please create an issue on github!](https://github.com/opennetwork/tsgraph/issues)
+>
+> I have written the below in the style of guide
 
 ## Define Graph values
 
