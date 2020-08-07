@@ -390,7 +390,7 @@ lens as subject {
   return 1
 }
 
-get subject
+await subject
 ```
 
 By default the graph defined is related to `context`
@@ -414,7 +414,7 @@ lens as a {
 }
 
 export lens as b {
-	return 1 + get a
+	return 1 + await a
 }
 ```
 
@@ -434,7 +434,7 @@ Lenses `this` is passed down unless specified
 import { name } 
 
 export lens as c(this: named)  {
-	return get b + get name
+	return (await b) + (await name)
 }
 ```
 
@@ -447,8 +447,8 @@ graph as e {
 
 lens as d(this: named) {
 	return [
-		`User ${get c with e}`,
-		`User ${get c { variable 2 } }`
+		`User ${await c with e}`,
+		`User ${await c { variable 2 } }`
 	].join(", ")
 }
 ```
@@ -475,7 +475,7 @@ lens as version(this: module) is scalar {
 // This binds `application` to the current `context` graph
 graph as application {
     containedModule as moduleInstance {
-		(`${get name}:${get version}`)
+		(`${await name}:${await version}`)
 	}
 }
 
