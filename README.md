@@ -115,7 +115,12 @@ console.log({ withinContext: differentSiteAuthor.value.startsWith(context.value)
 
 ### Graph
 
-A graph will extend [`ReadonlyDataset`](https://github.com/opennetwork/rdf-dataset/blob/master/src/readonly-dataset.ts), have a `subject` of `BlankNode | NamedNode | Variable`, a graph will implement [`AsyncDataset`](https://github.com/opennetwork/rdf-dataset-async/blob/master/src/index.ts#L13)
+```typescript
+export interface Graph extends ReadonlyDataset<Quad>, AsyncDataset {
+  subject: BlankNode | NamedNode | Variable
+}
+```
+
 
 An empty graph can be defined as
 
@@ -388,7 +393,7 @@ graph function f extends status {
 
 ## Lens
 
-```
+```typescript
 export interface Lens<V> extends ReadonlyDataset<Quad> {
   [Symbol.iterator](): Iterator<Quad>
   [Symbol.asyncIterator](): AsyncIterator<[ReadonlyDataset<Quad>, ReadonlyDataset<Quad>]>
@@ -398,7 +403,7 @@ export interface Lens<V> extends ReadonlyDataset<Quad> {
 
 A lens is like a function, but instead of just `yield` the `lens` can use `return`
 
-```
+```tsgraph
 lens as subject {
   return 1
 }
@@ -410,7 +415,7 @@ By default the graph defined is related to `context`
 
 Yet, `this` can be used a special parameter to define the graph type
 
-```
+```tsgraph
 export graph named {
 	name string
 }
