@@ -383,7 +383,7 @@ export interface Lens<V> extends ReadonlyDataset<Quad> {
 }
 ```
 
-A lens is like a function, but instead of just `yield` the `lens` can use `return`
+A lens behaves similar to a graph function, but instead of multiple `yield` statements a `lens` has a single `return`
 
 ```tsgraph
 lens as subject {
