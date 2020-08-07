@@ -17,11 +17,11 @@ it could also be a blank node, then the value should start with `:` the value ca
 ### Nodes
 
 ```tsgraph
-export const partialNode = :
-export const blankNode = :named
-export const scheme = scheme:
-export const httpsPartial = https:
-export const httpsTemplate = https://example.com/path/
+export const partialNode: NamedNode | BlankNode = :
+export const blankNode: BlankNode = :named
+export const scheme: NamedNode = scheme:
+export const httpsPartial: NamedNode = https:
+export const httpsTemplate: NamedNode = https://example.com/path/
 ```
 
 ```tsgraph
@@ -40,18 +40,18 @@ Literals can be defined by using a value of that type, or their primative name o
 defined within a graph, which is expanded more on later
 
 ```
-export const boolean = graph { boolean }
-export const booleanTrue = graph { true }
-export const booleanFalse = graph { false }
-export const number = graph { number }
-export const numberZero = graph { 0 }
-export const numberOne = graph { 0 }
-export const string = graph { string }
-export const stringEmpty = graph { "" }
-export const stringWhatever = graph { "Whatever" }
-export const stringWhatever = graph { "Whatever" }
-export const bigint = graph { bigint }
-export const date = graph { Date }
+export const boolean: ReadonlyDataset = graph { boolean }
+export const booleanTrue: ReadonlyDataset = graph { true }
+export const booleanFalse: ReadonlyDataset = graph { false }
+export const number: ReadonlyDataset = graph { number }
+export const numberZero: ReadonlyDataset = graph { 0 }
+export const numberOne: ReadonlyDataset = graph { 0 }
+export const string: ReadonlyDataset = graph { string }
+export const stringEmpty: ReadonlyDataset = graph { "" }
+export const stringWhatever: ReadonlyDataset = graph { "Whatever" }
+export const stringWhatever: ReadonlyDataset = graph { "Whatever" }
+export const bigint: ReadonlyDataset = graph { bigint }
+export const date: ReadonlyDataset = graph { Date }
 ```
 
 ```tsgraph
@@ -69,9 +69,9 @@ node n0.tsgraph
 Named nodes can be extended using this pattern
 
 ```tsgraph
-const domain = https://example.com
+const domain: NamedNode = https://example.com
 
-const path = {domain}/path
+const path: NamedNode = {domain}/path
 ```
 
 ### Context
@@ -83,13 +83,13 @@ Define module cpmyexy, this is the default graph once defined can be referenced 
 
 `guide:node?required&domain`
 ```tsgraph
-export const context = https://
+export const context: NamedNode = https://
 ```
 
 Context can be referenced when defining other named nodes
 
 ```tsgraph
-const author = {context}/author
+const author: NamedNode = {context}/author
 ```
 
 By default `context` is refered to if only a path is defined
@@ -97,7 +97,7 @@ By default `context` is refered to if only a path is defined
 The above could be defined as 
 
 ```tsgraph
-const author = /author
+const author: NamedNode = /author
 ```
 
 #### New context
@@ -105,15 +105,17 @@ const author = /author
 If a different context is to be used, a local `context` variable can be defined
 
 ```tsgraph
-const context = https://different.site
+const context: NamedNode = https://different.site
 
-const differentSiteAuthor = /author
+const differentSiteAuthor: NamedNode = /author
 
 console.log({ differentSiteAuthor })
 console.log({ withinContext: differentSiteAuthor.value.startsWith(context.value) })
 ```
 
 ### Graph
+
+A graph will extend [`ReadonlyDataset`](https://github.com/opennetwork/rdf-dataset/blob/master/src/readonly-dataset.ts), have a `subject` of `BlankNode | NamedNode | Variable`, a graph will implement [`AsyncDataset`](https://github.com/opennetwork/rdf-dataset-async/blob/master/src/index.ts#L13)
 
 An empty graph can be defined as
 
