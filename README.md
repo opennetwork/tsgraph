@@ -1,5 +1,7 @@
 # tsgraph
 
+See [graph](https://github.com/opennetwork/graph)
+
 > Below is a rough idea as to goal for functionality. 
 >
 > Please treat all 0.x.y revisions to be unstable
